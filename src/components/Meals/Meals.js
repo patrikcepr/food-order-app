@@ -6,7 +6,7 @@ const Meals = (props) => {
   return (
     <Fragment>
       <MealsSummary />
-      <MealsList meals={props.meals} addMeal={props.onAddMeal} />
+      <MealsList />
     </Fragment>
   );
 };

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MealItem from './MealItem';
 import Card from '../UI/Card/Card';
 import classes from './MealsList.module.css';
 
+import CartContext from '../../store/cart-context';
+
 const MealsList = (props) => {
-  const meals = props.meals.map((item) => {
+  const ctx = useContext(CartContext);
+
+  const meals = ctx.meals.map((item) => {
     return (
       <MealItem
         key={item.id}
@@ -12,7 +16,6 @@ const MealsList = (props) => {
         name={item.name}
         description={item.description}
         price={item.price}
-        addMeal={props.addMeal}
       />
     );
   });

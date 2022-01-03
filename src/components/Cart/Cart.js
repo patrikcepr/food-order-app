@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartItem from './CartItem';
 import Button from '../UI/Button/Button';
-// import CartContext from '../../store/cart-context';
+import CartContext from '../../store/cart-context';
 
 import classes from './Cart.module.css';
 
@@ -11,11 +11,11 @@ const totalPrice = (arr) => {
   return sum;
 };
 
-const Cart = (props) => {
-  // const context = useContext(CartContext);
+const Cart = () => {
+  const ctx = useContext(CartContext);
 
   const onRemoveHandler = (e) => {
-    let newCart = props.cart
+    let newCart = ctx.cart
       .map((obj) => {
         if (obj.id === e.target.parentNode.parentNode.id && obj.amount >= 0) {
           return { ...obj, amount: --obj.amount };
@@ -25,19 +25,19 @@ const Cart = (props) => {
       })
       .filter((obj) => obj.amount > 0);
 
-    props.onCartChange(newCart);
+    ctx.cartChange(newCart);
   };
 
   const onAddHandler = (e) => {
-    let newCart = props.cart.map((obj) =>
+    let newCart = ctx.cart.map((obj) =>
       obj.id === e.target.parentNode.parentNode.id
         ? { ...obj, amount: ++obj.amount }
         : obj
     );
-    props.onCartChange(newCart);
+    ctx.cartChange(newCart);
   };
 
-  const cartItems = props.cart.map((item) => {
+  const cartItems = ctx.cart.map((item) => {
     return (
       <CartItem
         name={item.name}
@@ -45,7 +45,6 @@ const Cart = (props) => {
         amount={item.amount}
         id={item.id}
         key={item.id}
-        onCartChange={props.onCartChange}
         onRemove={onRemoveHandler}
         onAdd={onAddHandler}
       />
@@ -54,22 +53,22 @@ const Cart = (props) => {
 
   return (
     <div>
-      {props.cart.length > 0 ? (
+      {ctx.cart.length > 0 ? (
         <div>
           <div className={classes['cart-items']}>{cartItems}</div>
           <div className={classes.total}>
-            Total Amount <span>${totalPrice(props.cart).toFixed(2)}</span>
+            Total Amount <span>${totalPrice(ctx.cart).toFixed(2)}</span>
           </div>
         </div>
       ) : (
         <h2>Your Cart Is Empty</h2>
       )}
       <div className={classes.actions}>
-        <Button type='cancel' onClick={props.onReset}>
+        <Button type='cancel' onClick={ctx.hideModal}>
           Cancel
         </Button>
-        {props.cart.length > 0 ? (
-          <Button type='button' style={classes.button} onClick={props.onOrder}>
+        {ctx.cart.length > 0 ? (
+          <Button type='button' style={classes.button} onClick={ctx.onOrder}>
             Order
           </Button>
         ) : (

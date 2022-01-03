@@ -1,23 +1,27 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import ReactDom from 'react-dom';
 import Cart from '../../Cart/Cart';
+
+import CartContext from '../../../store/cart-context';
 
 import classes from './Modal.module.css';
 
 const Modal = (props) => {
+  const ctx = useContext(CartContext);
+
   return (
     <Fragment>
       {ReactDom.createPortal(
-        <div className={classes.backdrop} onClick={props.onReset}></div>,
+        <div className={classes.backdrop} onClick={ctx.hideModal}></div>,
         document.getElementById('backdrop-root')
       )}
       {ReactDom.createPortal(
         <div className={classes.modal}>
           <Cart
-            onReset={props.onReset}
-            onOrder={props.onOrder}
-            cart={props.cart}
-            onCartChange={props.onCartChange}
+          // onReset={props.onReset}
+          // onOrder={props.onOrder}
+          // cart={props.cart}
+          // onCartChange={props.onCartChange}
           />
         </div>,
         document.getElementById('overlay-root')

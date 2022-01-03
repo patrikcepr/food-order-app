@@ -3,7 +3,8 @@ import React from 'react';
 import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
-  const price = `$${props.price.toFixed(2)}`;
+  const priceNum = +props.price;
+  const price = `$${priceNum.toFixed(2)}`;
 
   return (
     <li id={props.id} className={classes['cart-item']}>
