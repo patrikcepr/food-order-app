@@ -3,10 +3,10 @@ import MealItem from './MealItem';
 import Card from '../UI/Card/Card';
 import classes from './MealsList.module.css';
 
-import CartContext from '../../store/cart-context';
+import AppContext from '../../store/cart-context';
 
 const MealsList = (props) => {
-  const ctx = useContext(CartContext);
+  const ctx = useContext(AppContext);
 
   const meals = ctx.meals.map((item) => {
     return (

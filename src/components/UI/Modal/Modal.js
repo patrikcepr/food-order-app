@@ -2,12 +2,12 @@ import React, { Fragment, useContext } from 'react';
 import ReactDom from 'react-dom';
 import Cart from '../../Cart/Cart';
 
-import CartContext from '../../../store/cart-context';
+import AppContext from '../../../store/cart-context';
 
 import classes from './Modal.module.css';
 
 const Modal = (props) => {
-  const ctx = useContext(CartContext);
+  const ctx = useContext(AppContext);
 
   return (
     <Fragment>

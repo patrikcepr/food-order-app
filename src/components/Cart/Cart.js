@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import CartItem from './CartItem';
 import Button from '../UI/Button/Button';
-import CartContext from '../../store/cart-context';
+import AppContext from '../../store/cart-context';
 
 import classes from './Cart.module.css';
 
@@ -12,7 +12,7 @@ const totalPrice = (arr) => {
 };
 
 const Cart = () => {
-  const ctx = useContext(CartContext);
+  const ctx = useContext(AppContext);
 
   const onRemoveHandler = (e) => {
     let newCart = ctx.cart

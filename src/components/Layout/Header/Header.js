@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import HeaderCartButton from './HeaderCartButton';
 
-import CartContext from '../../../store/cart-context';
+import AppContext from '../../../store/cart-context';
 
 import mealsImage from '../../../assets/meals.jpg';
 import classes from './Header.module.css';
 
 const Header = () => {
-  const ctx = useContext(CartContext);
+  const ctx = useContext(AppContext);
 
   return (
     <React.Fragment>

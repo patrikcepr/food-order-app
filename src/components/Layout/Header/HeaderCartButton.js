@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CartIcon from './CartIcon';
-// import CartContext from '../../../store/cart-context';
+// import AppContext from '../../../store/cart-context';
 
 import classes from './HeaderCartButton.module.css';
 
@@ -14,7 +14,7 @@ const HeaderCartButton = (props) => {
   setTimeout(() => {
     setUpdated('');
   }, 300);
-  // const context = useContext(CartContext);
+  // const context = useContext(AppContext);
 
   return (
     <button className={`${classes.button} ${updated}`} onClick={props.onClick}>

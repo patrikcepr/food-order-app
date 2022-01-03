@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import DUMMY_MEALS from '../components/Meals/dummy_meals';
 
-const CartContext = React.createContext({
+const AppContext = React.createContext({
   cart: [],
   totalAmount: 0,
   addItem: (id) => {},
   removeItem: (item) => {},
 });
 
-export default CartContext;
+export default AppContext;
 
 const updateAmount = (arr) => {
   let total = 0;
@@ -17,7 +17,7 @@ const updateAmount = (arr) => {
   return total;
 };
 
-export const CartContextProvider = (props) => {
+export const AppContextProvider = (props) => {
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
@@ -74,7 +74,7 @@ export const CartContextProvider = (props) => {
   };
 
   return (
-    <CartContext.Provider
+    <AppContext.Provider
       value={{
         cart: cart,
         totalAmount: totalAmount,
@@ -88,6 +88,6 @@ export const CartContextProvider = (props) => {
       }}
     >
       {props.children}
-    </CartContext.Provider>
+    </AppContext.Provider>
   );
 };
